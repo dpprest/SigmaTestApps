@@ -9,9 +9,9 @@ namespace SigmaTestApp1
     public class MyArrayList<T>
     {
         public const int DefaultCapacity = 4;
-        public T[] _items;
-        public int _size;
-        public int _capacity;
+        private T[] _items;
+        private int _size;
+        private int _capacity;
 
         public MyArrayList()
         {
@@ -36,29 +36,7 @@ namespace SigmaTestApp1
         public int Capacity
         {
             get => _items.Length;
-            set
-            {
-                if (value < _size)
-                    throw new ArgumentOutOfRangeException(nameof(value), " Новая емкость меньше текущей. ");
-
-                if (value != _items.Length)
-                    if (value > 0)
-                    {
-
-                        T[] newItems = new T[value];
-                        if (value > 0)
-                        {
-                            Array.Copy(_items, newItems, _size);
-                        }
-                        _items = newItems;
-                        _capacity = value;
-                    }
-                    else
-                    {
-                        _items = new T[DefaultCapacity];
-                        _size = DefaultCapacity;
-                    }
-            }
+            set { }
         }
 
         public T this[int index]
