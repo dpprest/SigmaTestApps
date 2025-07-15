@@ -65,9 +65,11 @@ namespace SigmaTestApp1
         public void Insert(int index, T item)
         {
             if (index < 0 || index > _size)
+            {
                 throw new ArgumentOutOfRangeException(nameof(index));
+            }
 
-            if (_size == _items.Length)
+            if (_size == _capacity)
             { 
                 EnsureCapacity(_size + 1); 
             }
@@ -122,13 +124,22 @@ namespace SigmaTestApp1
         }
         private void EnsureCapacity(int min)
         {
-            if (_items.Length < min)
+            if (_items.Length >= min)
             {
-                int newCapacity = _items.Length == 0 ? DefaultCapacity : _items.Length * 2;
-                if (newCapacity > Array.MaxLength) newCapacity = Array.MaxLength;
-                if (newCapacity < min) newCapacity = min;
-                Capacity = newCapacity;
+                return;
             }
+            int newCapacity = _items.Length == 0 ? DefaultCapacity : _items.Length * 2;
+
+            if (newCapacity < min)
+            {
+                newCapacity = min;
+            }
+            T[] newItems = new T[newCapacity];
+            if (_size > 0)
+            {
+                Array.Copy(_items, 0, newItems, 0, _size);
+            }
+            _items = newItems;
         }
         public T[] ToArray()
         {
@@ -136,5 +147,7 @@ namespace SigmaTestApp1
             Array.Copy(_items, array, _size);
             return array;
         }
+
+
     }
 }
