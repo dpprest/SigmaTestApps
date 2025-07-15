@@ -30,14 +30,9 @@ namespace SigmaTestApp1
                 _capacity = capacity;
             }
         }
-
         public int Count => _size;
 
-        public int Capacity
-        {
-            get => _items.Length;
-            set { }
-        }
+        public int Capacity => _items.Length;
 
         public T this[int index]
         {
