@@ -17,15 +17,15 @@ namespace SigmaTestApp1
         {
             _items = new T[DefaultCapacity];
             _capacity = DefaultCapacity;
-            _size = 0;
         }
         public MyArrayList(int capacity)
         {
-            _items = new T[DefaultCapacity];
             if (capacity < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(capacity), " Емкость не может быть отрицательной. ");
             }
+            _items = new T[DefaultCapacity];
+            _capacity = capacity;
         }
         public int Count => _size;
 
@@ -56,16 +56,16 @@ namespace SigmaTestApp1
         }
         public void Insert(int index, T item)
         {
-            if (index < 0 || index > _size)
+            if (index < 0 || index > _items.Length)
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
 
-            if (_size == _capacity)
+            if (_items.Length == _capacity)
             { 
                 EnsureCapacity(_size + 1); 
             }
-            if (index < _size)
+            if (index < _items.Length)
             {
                 Array.Copy(_items, index, _items, index + 1, _size - index);
             }
