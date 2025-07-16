@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigmaTestApp1", "SigmaTestApp1\SigmaTestApp1.csproj", "{C107501E-D8A9-4057-8019-B386FE7912A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyArraiListTests", "MyArraiListTests\MyArraiListTests.csproj", "{0F558FC1-E163-4061-9A03-1843073B40C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyArrayListTests", "MyArraiListTests\MyArrayListTests.csproj", "{0F558FC1-E163-4061-9A03-1843073B40C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

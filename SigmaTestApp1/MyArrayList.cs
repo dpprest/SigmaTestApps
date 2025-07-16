@@ -25,14 +25,11 @@ namespace SigmaTestApp1
             if (capacity < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(capacity), " Емкость не может быть отрицательной. ");
-                _items = new T[capacity];
-                _size = 0;
-                _capacity = capacity;
             }
         }
         public int Count => _size;
 
-        public int Capacity => _items.Length;
+        public int Capacity => _capacity;
 
         public T this[int index]
         {

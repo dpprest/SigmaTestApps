@@ -1,6 +1,6 @@
 using SigmaTestApp1;
 
-namespace MyArraiListTests
+namespace MyArrayListTests
 {
     public class MyArrayListTests
     {
