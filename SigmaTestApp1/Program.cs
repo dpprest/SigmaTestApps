@@ -6,7 +6,7 @@ public class Program
 {
     public static void Main()
     {
-        var myList = new MyArrayList<string>(2);
+        var myList = new MyArrayList<string>(4);
 
         Console.WriteLine("\n1. Добавляем элементы c помощью Add:");
         myList.Add("Яблоко");

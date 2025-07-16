@@ -63,7 +63,7 @@ namespace SigmaTestApp1
 
             if (_items.Length == _capacity)
             { 
-                EnsureCapacity(_size + 1); 
+                EnsureCapacity(_items.Length + 1); 
             }
             if (index < _items.Length)
             {
