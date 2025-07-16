@@ -27,7 +27,7 @@ namespace SigmaTestApp1
             _items = new T[DefaultCapacity];
             _capacity = capacity;
         }
-        public int Count => _size;
+        public int Count => _items.Length;
 
         public int Capacity => _capacity;
 
@@ -63,7 +63,7 @@ namespace SigmaTestApp1
 
             if (_items.Length == _capacity)
             { 
-                EnsureCapacity(_items.Length + 1); 
+                EnsureCapacity(_size + 1); 
             }
             if (index < _items.Length)
             {
@@ -127,10 +127,7 @@ namespace SigmaTestApp1
                 newCapacity = min;
             }
             T[] newItems = new T[newCapacity];
-            if (_size > 0)
-            {
-                Array.Copy(_items, 0, newItems, 0, _size);
-            }
+            Array.Copy(_items, 0, newItems, 0, _items.Length);
             _items = newItems;
         }
         public T[] ToArray()
