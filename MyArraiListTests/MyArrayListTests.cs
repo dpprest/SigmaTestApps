@@ -189,6 +189,6 @@ namespace MyArrayListTests
             Assert.Equal(new[] { 1, 2, 3 }, array);
         }
 
-        
+
     }
 }

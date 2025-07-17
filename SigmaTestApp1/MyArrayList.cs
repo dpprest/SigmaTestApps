@@ -8,15 +8,16 @@ namespace SigmaTestApp1
 {
     public class MyArrayList<T>
     {
-        public const int DefaultCapacity = 4;
+        private const int DefaultCapacity = 4;
         private T[] _items;
         private int _size;
         private int _capacity;
 
         public MyArrayList()
         {
-            _items = new T[DefaultCapacity];
-            _capacity = DefaultCapacity;
+            _items = new T[_capacity];
+            _size = 0;
+
         }
         public MyArrayList(int capacity)
         {
@@ -24,12 +25,36 @@ namespace SigmaTestApp1
             {
                 throw new ArgumentOutOfRangeException(nameof(capacity), " Емкость не может быть отрицательной. ");
             }
-            _items = new T[DefaultCapacity];
-            _capacity = capacity;
+            _items = capacity == 0 ? new T[_capacity] : new T[capacity];
+            _size = 0;
         }
-        public int Count => _items.Length;
+        public int Count => _size;
 
-        public int Capacity => _capacity;
+        public int Capacity
+        {
+            get => _items.Length;
+            set
+            {
+            
+              if (value != _items.Length)
+              {
+                 if (value > 0)
+                    {
+                    T[] newItems = new T[value];
+                    if (_size > 0)
+                    {
+                        Array.Copy(_items, newItems, _size);
+                    }
+                    _items = newItems;
+                 }
+                 else
+                 {
+                    _items = new T[DefaultCapacity];
+                 }
+              } 
+        }
+    }
+
 
         public T this[int index]
         {
@@ -56,19 +81,15 @@ namespace SigmaTestApp1
         }
         public void Insert(int index, T item)
         {
-            if (index < 0 || index > _items.Length)
-            {
+            if (index < 0 || index > _size)
                 throw new ArgumentOutOfRangeException(nameof(index));
-            }
 
-            if (_items.Length == _capacity)
-            { 
-                EnsureCapacity(_size + 1); 
-            }
-            if (index < _items.Length)
-            {
+            if (_size == _items.Length)
+                EnsureCapacity(_size + 1);
+
+            if (index < _size)
                 Array.Copy(_items, index, _items, index + 1, _size - index);
-            }
+
             _items[index] = item;
             _size++;
         }
@@ -116,19 +137,12 @@ namespace SigmaTestApp1
         }
         private void EnsureCapacity(int min)
         {
-            if (_items.Length >= min)
+            if (_items.Length < min)
             {
-                return;
+                int newCapacity = _items.Length == 0 ? DefaultCapacity : _items.Length * 2;
+                if (newCapacity < min) newCapacity = min;
+                Capacity = newCapacity;
             }
-            int newCapacity = _items.Length == 0 ? DefaultCapacity : _items.Length * 2;
-
-            if (newCapacity < min)
-            {
-                newCapacity = min;
-            }
-            T[] newItems = new T[newCapacity];
-            Array.Copy(_items, 0, newItems, 0, _items.Length);
-            _items = newItems;
         }
         public T[] ToArray()
         {
